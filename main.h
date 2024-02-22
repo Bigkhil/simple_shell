@@ -1,6 +1,7 @@
-#ifndef main_H
-#define main_H
+#ifndef MAIN_H
+#define MAIN_H
 #include <unistd.h>
+#include <stdbool.h>
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,4 +11,8 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
+
+void print_k(const char *format);
+char **split_it(char *str);
+void execute_cmd(const char *cmd, char *const argv[], char *const env[]);
 #endif
