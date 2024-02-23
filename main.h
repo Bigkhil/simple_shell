@@ -11,8 +11,7 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
-
 void print_k(const char *format);
 char **split_it(char *str);
-void execute_cmd(const char *cmd, char *const argv[], char *const env[]);
+void execute_cmd(const char *cmd, char **cmd_arr);
 #endif
