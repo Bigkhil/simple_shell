@@ -5,7 +5,7 @@
  * @cmd_arr: array of strings
  * Return: void
  */
-void execute_cmd(const char *cmd, char **cmd_arr)
+void execute_cmd(char *cmd, char **cmd_arr)
 {
 	int status;
 	pid_t child_process = fork();
@@ -23,5 +23,7 @@ void execute_cmd(const char *cmd, char **cmd_arr)
 			exit(EXIT_FAILURE);
 		}
 	}
-	wait(NULL);
+	do {
+		waitpid(child_process, &status, WUNTRACED);
+	} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 }
