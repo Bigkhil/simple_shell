@@ -10,19 +10,20 @@ int main(int argc, char *argv[])
 {
 	char *prompt = "karim & khalil Shell$ ", *buff = NULL, *cmd_path;
 	char **tokens;
-	size_t buff_size = 0;
+	size_t buff_size = 0, i = 0;
 	ssize_t ret_getline;
 
 	(void)argc, (void)argv;
 	while (1)
 	{
+		i = 0;
 		buff = NULL, tokens = NULL, cmd_path = NULL;
 		print_k(prompt);
 		ret_getline = getline(&buff, &buff_size, stdin);
 		if (ret_getline == -1)
 		{
 			free(buff);
-			exit(-1);
+			exit(EXIT_FAILURE);
 		}
 		buff[ret_getline - 1] = '\0';
 		tokens = split_it(buff);
@@ -33,6 +34,12 @@ int main(int argc, char *argv[])
 		}
 		else
 			execute_cmd(tokens[0], tokens);
+		while (tokens[i] != NULL)
+		{
+			free(tokens[i]);
+			i++;
+		}
+		free(tokens[i]);
 		free(tokens), free(buff), free(cmd_path);
 	}
 	return (0);

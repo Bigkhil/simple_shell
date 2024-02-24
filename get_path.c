@@ -16,7 +16,7 @@ char *get_path(char *cmd)
 		dir = strtok(env_path_cpy, ":");
 		while (dir != NULL)
 		{
-			full_path = NULL, full_path = malloc(strlen(dir) + strlen(cmd) + 1);
+			full_path = NULL, full_path = malloc(strlen(dir) + strlen(cmd) + 2);
 			if (full_path == NULL)
 			{
 				free(full_path);
@@ -25,6 +25,7 @@ char *get_path(char *cmd)
 			strcpy(full_path, dir);
 			strcat(full_path, "/");
 			strcat(full_path, cmd);
+			strcat(full_path, "\0");
 			if (stat(full_path, &st) == 0)
 			{
 				free(env_path_cpy);

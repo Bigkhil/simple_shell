@@ -23,7 +23,5 @@ void execute_cmd(char *cmd, char **cmd_arr)
 			exit(EXIT_FAILURE);
 		}
 	}
-	do {
-		waitpid(child_process, &status, WUNTRACED);
-	} while (!WIFEXITED(status) && !WIFSIGNALED(status));
+	wait(NULL);
 }
