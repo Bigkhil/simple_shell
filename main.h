@@ -13,5 +13,6 @@
 #include <sys/stat.h>
 void print_k(const char *format);
 char **split_it(char *str);
-void execute_cmd(const char *cmd, char **cmd_arr);
+void execute_cmd(char *cmd, char **cmd_arr);
+char *get_path(char *cmd);
 #endif
