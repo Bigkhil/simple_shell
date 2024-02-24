@@ -25,7 +25,6 @@ char *get_path(char *cmd)
 			strcpy(full_path, dir);
 			strcat(full_path, "/");
 			strcat(full_path, cmd);
-			printf("%s\n", full_path);
 			if (stat(full_path, &st) == 0)
 			{
 				free(env_path_cpy);
