@@ -22,6 +22,7 @@ int main(int argc, char *argv[])
 		ret_getline = getline(&buff, &buff_size, stdin);
 		if (ret_getline == -1)
 		{
+			print_k("\n");
 			free(buff);
 			exit(EXIT_FAILURE);
 		}
