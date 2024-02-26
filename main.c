@@ -8,11 +8,9 @@
  */
 int main(int argc, char *argv[], char *env[])
 {
-	char *prompt = "karim & khalil Shell$ ", *buff = NULL, *cmd_path;
-	char **tokens;
+	char *prompt = "karim & khalil Shell$ ", *buff = NULL, *cmd_path, **tokens;
 	size_t buff_size = 0, i = 0;
 	ssize_t ret_getline;
-
 	(void)argc, (void)argv, (void)env;
 	while (1)
 	{
@@ -29,7 +27,10 @@ int main(int argc, char *argv[], char *env[])
 		buff[ret_getline - 1] = '\0';
 		tokens = split_it(buff);
 		if (strcmp(tokens[0], "exit") == 0)
+		{
 			exit(0);
+			free(tokens);
+		}
 		else
 		{
 		cmd_path = get_path(tokens[0]);
