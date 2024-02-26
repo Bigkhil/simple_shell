@@ -6,14 +6,14 @@
  * @env: pointer to array of strings
  * Return: Always 0.
  */
-int main(int argc, char *argv[])
+int main(int argc, char *argv[], char *env[])
 {
 	char *prompt = "karim & khalil Shell$ ", *buff = NULL, *cmd_path;
 	char **tokens;
 	size_t buff_size = 0, i = 0;
 	ssize_t ret_getline;
 
-	(void)argc, (void)argv;
+	(void)argc, (void)argv, (void)env;
 	while (1)
 	{
 		i = 0;
