@@ -28,11 +28,13 @@ int main(int argc, char *argv[], char *env[])
 		}
 		buff[ret_getline - 1] = '\0';
 		tokens = split_it(buff);
+		if (strcmp(tokens[0], "exit") == 0)
+			exit(0);
+		else
+		{
 		cmd_path = get_path(tokens[0]);
 		if (cmd_path != NULL)
-		{
 			execute_cmd(cmd_path, tokens);
-		}
 		else
 			execute_cmd(tokens[0], tokens);
 		while (tokens[i] != NULL)
@@ -42,6 +44,7 @@ int main(int argc, char *argv[], char *env[])
 		}
 		free(tokens[i]);
 		free(tokens), free(buff), free(cmd_path);
+		}
 	}
 	return (0);
 }
