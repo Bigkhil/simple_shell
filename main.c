@@ -27,9 +27,10 @@ int main(int argc, char *argv[])
 		tokens = split_it(buff);
 		if (tokens)
 		{
+			int i;
 			cmd_path = get_path(tokens[0]);
 			execute_cmd(cmd_path ? cmd_path : tokens[0], tokens);
-			for (int i = 0; tokens[i] != NULL; i++)
+			for (i = 0; tokens[i] != NULL; i++)
 			{
 				free(tokens[i]);
 			}
