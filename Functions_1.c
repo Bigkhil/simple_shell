@@ -21,15 +21,11 @@ char **split_it(char *str)
 
 	if (str_copy1 == NULL)
 	{
-		free(str_copy1);
-		free(str_copy2);
-		exit(EXIT_FAILURE);
+		free(str_copy1), free(str_copy2), exit(EXIT_FAILURE);
 	}
 	if (str_copy2 == NULL)
 	{
-		free(str_copy2);
-		free(str_copy1);
-		exit(EXIT_FAILURE);
+		free(str_copy2), free(str_copy1), exit(EXIT_FAILURE);
 	}
 	token = strtok(str_copy1, " ");
 	while (token != NULL)
@@ -40,8 +36,8 @@ char **split_it(char *str)
 	tokens = malloc(sizeof(char *) * (num_tokens + 1));
 	if (tokens == NULL)
 	{
-		free(tokens);
-		exit(EXIT_FAILURE);
+		free(str_copy1), free(str_copy2);
+		return (NULL);
 	}
 	token = NULL;
 	token = strtok(str_copy2, " ");

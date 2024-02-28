@@ -20,7 +20,7 @@ char *get_path(char *cmd)
 			if (full_path == NULL)
 			{
 				free(full_path), free(env_path_cpy);
-				exit(EXIT_FAILURE);
+				return (NULL);
 			}
 			strcpy(full_path, dir);
 			strcat(full_path, "/");

@@ -20,26 +20,29 @@ int main(int argc, char *argv[])
 		if (isatty(STDIN_FILENO))
 			print_k(prompt);
 		ret_getline = getline(&buff, &buff_size, stdin);
-		if (ret_getline == -1)
+		if (ret_getline == -1 || strcmp(buff, "exit\n") == 0)
 		{
 			free(buff);
 			exit(EXIT_FAILURE);
 		}
 		buff[ret_getline - 1] = '\0';
 		tokens = split_it(buff);
-		cmd_path = get_path(tokens[0]);
-		if (cmd_path != NULL)
+		if (tokens)
 		{
-			execute_cmd(cmd_path, tokens);
-		}
-		else
-			execute_cmd(tokens[0], tokens);
-		while (tokens[i] != NULL)
-		{
+			cmd_path = get_path(tokens[0]);
+			if (cmd_path != NULL)
+			{
+				execute_cmd(cmd_path, tokens);
+			}
+			else
+				execute_cmd(tokens[0], tokens);
+			while (tokens[i] != NULL)
+			{
+				free(tokens[i]);
+				i++;
+			}
 			free(tokens[i]);
-			i++;
 		}
-		free(tokens[i]);
 		free(tokens), free(buff), free(cmd_path);
 	}
 	return (0);
