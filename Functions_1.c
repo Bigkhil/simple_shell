@@ -3,24 +3,17 @@
  * print_k - print
  * @format: string
  * Return: void
+ * Describtion: print
  */
 void print_k(const char *format)
 {
 	write(STDOUT_FILENO, format, strlen(format));
 }
 /**
- * split_it - tokenize the string
- *@str: string
- * Return: array of tokens
- */
-
-
-/**
  * print_env - prints the environment
  * @env: array of environment variables
- *
- * Description: iteraite the evironment variable and print it
-*/
+ * Describtion: iteraite the evironment variable and print it
+ */
 void print_env(char *env[])
 {
 	int i = 0;
@@ -35,9 +28,8 @@ void print_env(char *env[])
 /**
  * remove_space - remove the spaces outside the string
  * @str: string
- *
- * return: modified string without spaces
-*/
+ * Return: modified string without spaces
+ */
 char *remove_space(char *str)
 {
 	int i, j;

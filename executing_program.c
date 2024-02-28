@@ -2,8 +2,7 @@
 
 /**
  * execute_cmd - execute command
- * @cmd: string
- * @cmd_arr: array of strings
+ * @argv: array of strings
  * Return: void
  */
 void *execute_cmd(char **argv)
@@ -34,7 +33,6 @@ void *execute_cmd(char **argv)
 /**
  * forking - to create a child for the process
  * @new_argv: string represent the command
- * 
  * Return: int value represents the id of child process
 */
 int forking(char **new_argv)

@@ -13,35 +13,33 @@ char *get_path(char *cmd)
 	env_path = getenv("PATH");
 	if (env_path)
 	{
-			env_path_cpy = strdup(env_path);
-			command_len = strlen(cmd);
-			dir = strtok(env_path_cpy, ":");
-			while (dir)
-			{
-				int dir_len = strlen(dir);
+		env_path_cpy = strdup(env_path);
+		command_len = strlen(cmd);
+		dir = strtok(env_path_cpy, ":");
+		while (dir)
+		{
+			int dir_len = strlen(dir);
 
-				full_path = malloc(command_len + dir_len + 2);
-				if (!full_path)
-				{
-					free(env_path_cpy);
-					return (NULL);
-				}
-				strncpy(full_path, dir, dir_len);
-				full_path[dir_len] = '/';
-				strncpy(full_path + dir_len + 1, cmd, command_len + 1);
-				if (stat(full_path, &st) == 0)
-				{
-					free(env_path_cpy);
-					return (full_path);
-				}
-				free(full_path);
-				dir = strtok(NULL, ":");
-			}
-			free(env_path_cpy);
-			if (stat(cmd, &st) == 0)
+			full_path = malloc(command_len + dir_len + 2);
+			if (!full_path)
 			{
-				return (strdup(cmd));
+				free(env_path_cpy);
+				return (NULL);
 			}
+			strncpy(full_path, dir, dir_len);
+			full_path[dir_len] = '/';
+			strncpy(full_path + dir_len + 1, cmd, command_len + 1);
+			if (stat(full_path, &st) == 0)
+			{
+				free(env_path_cpy);
+				return (full_path);
+			}
+			free(full_path);
+			dir = strtok(NULL, ":");
+		}
+		free(env_path_cpy);
+		if (stat(cmd, &st) == 0)
+			return (strdup(cmd));
 	}
 	return (NULL);
 }
@@ -50,15 +48,14 @@ char *get_path(char *cmd)
  * exitt - exit function
  * @argv: argv
  * @c: c
- * 
  * Return: this function returns NULL
-*/
+ */
 
 char **exitt(char **argv, char *c)
 {
 	int i = 0;
 
-	for ( i = 0; argv[i] != NULL; i++)
+	for (i = 0; argv[i] != NULL; i++)
 	{
 		free(argv[i]);
 	}
@@ -69,14 +66,12 @@ char **exitt(char **argv, char *c)
 }
 
 /**
- * tokenizig - tokens the string
+ * tokenizing - tokens the string
  * @argv: argv
- * @c: string
+ * @z: string
  * @n: size
- * 
- * Return: argv pointer
-*/
-extern char **environ;
+ * Return: this function returns tokens
+ */
 char **tokenizing(char **argv, char *z, size_t n)
 {
 	char *zi = NULL, *token = NULL, *delim = " \n";
@@ -87,7 +82,7 @@ char **tokenizing(char **argv, char *z, size_t n)
 	zi = strdup(z);
 	token = strtok(z, delim);
 
-	while(token != NULL)
+	while (token != NULL)
 	{
 		tokens++;
 		token = strtok(NULL, delim);
@@ -98,14 +93,14 @@ char **tokenizing(char **argv, char *z, size_t n)
 		free(zi);
 		return (NULL);
 	}
-	token = strtok(zi,delim);
+	token = strtok(zi, delim);
 	for (i = 0; token != NULL; i++)
 	{
 		argv[i] = strdup(token);
 		token = strtok(NULL, delim);
 	}
 	argv[i] = NULL;
-	if (strcmp(argv[0],"exit") == 0)
+	if (strcmp(argv[0], "exit") == 0)
 	{
 		return (exitt(argv, zi));
 	}
