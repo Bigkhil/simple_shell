@@ -53,16 +53,20 @@ char *get_path(char *cmd)
 
 char **exitt(char **argv, char *c)
 {
-	int i = 0;
-
-	for (i = 0; argv[i] != NULL; i++)
+	if (argv != NULL)
 	{
-		free(argv[i]);
+		int i = 0;
+
+		for (i = 0; argv[i] != NULL; i++)
+		{
+			free(argv[i]);
+		}
 	}
 	free(argv);
-	free(c);
-
-	return (NULL);
+	if (c != NULL)
+	{
+		free(c);
+	}
 }
 
 /**
