@@ -1,26 +1,59 @@
 #include "main.h"
+
 /**
  * execute_cmd - execute command
  * @cmd: string
  * @cmd_arr: array of strings
  * Return: void
  */
-void execute_cmd(char *cmd, char **cmd_arr)
+void *execute_cmd(char **argv)
+{
+	char *line = NULL, *ret_line = NULL;
+
+	if (!argv)
+	{
+		return (NULL);
+	}
+	line = argv[0];
+	ret_line = get_path(line);
+
+	if (!ret_line)
+	{
+		free(line);
+		return (NULL);
+	}
+
+	if (execve(ret_line, argv, NULL) == -1)
+	{
+		perror("execve");
+	}
+	free(ret_line);
+	return (NULL);
+}
+
+/**
+ * forking - to create a child for the process
+ * @new_argv: string represent the command
+ * 
+ * Return: int value represents the id of child process
+*/
+int forking(char **new_argv)
 {
 	pid_t child_process = fork();
+	int status = 0;
 
 	if (child_process == -1)
 	{
-		perror("fork");
-		exit(EXIT_FAILURE);
+		return (-1);
 	}
-	else if (child_process == 0)
+	if (child_process == 0)
 	{
-		if (execve(cmd, cmd_arr, NULL) == -1)
-		{
-			perror("execve");
-			exit(EXIT_FAILURE);
-		}
+		execute_cmd(new_argv);
+		return (-1);
 	}
-	wait(NULL);
+	else
+	{
+		wait(&status);
+	}
+	return (0);
 }
