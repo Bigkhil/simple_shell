@@ -14,29 +14,31 @@ char *get_path(char *cmd)
 	{
 		env_path_cpy = strdup(env_path);
 		if (!env_path_cpy)
-			return (NULL);
-  }
-		dir = strtok(env_path_cpy, ":");
-		while (dir != NULL)
 		{
-      full_path = malloc(strlen(dir) + strlen(cmd) + 2);
-			if (full_path == NULL)
-			{
-				free(env_path_cpy);
-				return (NULL);
-			}
-			strcpy(full_path, dir);
-			strcat(full_path, "/");
-			strcat(full_path, cmd);
-			if (stat(full_path, &st) == 0)
-			{
-				free(env_path_cpy);
-				return (full_path);
-			}
-			free(full_path);
-			dir = strtok(NULL, ":");
+			return (NULL);
 		}
-		free(env_path_cpy);
+			dir = strtok(env_path_cpy, ":");
+			while (dir != NULL)
+			{
+				full_path = malloc(strlen(dir) + strlen(cmd) + 2);
+				if (full_path == NULL)
+				{
+					free(env_path_cpy);
+					return (NULL);
+				}
+				strcpy(full_path, dir);
+				strcat(full_path, "/");
+				strcat(full_path, cmd);
+				if (stat(full_path, &st) == 0)
+				{
+					free(env_path_cpy);
+					return (full_path);
+				}
+				free(full_path);
+				dir = strtok(NULL, ":");
+			}
+			free(env_path_cpy);
 	}
 	return (NULL);
 }
+
