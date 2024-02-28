@@ -8,7 +8,7 @@
  */
 int main(int argc, char *argv[], char *env[])
 {
-	char *prompt = "karim & khalil Shell$ ", *buff = NULL, *cmd_path, **tokens;
+	char *buff = NULL, *cmd_path, **tokens;
 	size_t buff_size = 0, i = 0;
 	ssize_t ret_getline;
 	(void)argc, (void)argv, (void)env;
@@ -16,7 +16,6 @@ int main(int argc, char *argv[], char *env[])
 	{
 		i = 0;
 		buff = NULL, tokens = NULL, cmd_path = NULL;
-		print_k(prompt);
 		ret_getline = getline(&buff, &buff_size, stdin);
 		if (ret_getline == -1)
 		{
