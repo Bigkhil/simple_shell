@@ -12,7 +12,7 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
-extern char** environ;
+extern char **environ;
 void print_k(const char *format);
 void *execute_cmd(char **argv);
 int forking(char **new_argv);
