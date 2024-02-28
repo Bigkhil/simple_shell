@@ -17,7 +17,8 @@ int main(int argc, char *argv[])
 	{
 		i = 0;
 		buff = NULL, tokens = NULL, cmd_path = NULL;
-		print_k(prompt);
+		if (isatty(STDIN_FILENO))
+			print_k(prompt);
 		ret_getline = getline(&buff, &buff_size, stdin);
 		if (ret_getline == -1)
 		{
