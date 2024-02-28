@@ -7,7 +7,6 @@
  */
 void execute_cmd(char *cmd, char **cmd_arr)
 {
-	int status;
 	pid_t child_process = fork();
 
 	if (child_process == -1)
