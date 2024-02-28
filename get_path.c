@@ -19,7 +19,7 @@ char *get_path(char *cmd)
 			full_path = NULL, full_path = malloc(strlen(dir) + strlen(cmd) + 2);
 			if (full_path == NULL)
 			{
-				free(full_path);
+				free(full_path), free(env_path_cpy);
 				exit(EXIT_FAILURE);
 			}
 			strcpy(full_path, dir);
