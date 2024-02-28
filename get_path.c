@@ -15,10 +15,11 @@ char *get_path(char *cmd)
 		env_path_cpy = strdup(env_path);
 		if (!env_path_cpy)
 			return (NULL);
+  }
 		dir = strtok(env_path_cpy, ":");
 		while (dir != NULL)
 		{
-			full_path = NULL, full_path = malloc(strlen(dir) + strlen(cmd) + 2);
+      full_path = malloc(strlen(dir) + strlen(cmd) + 2);
 			if (full_path == NULL)
 			{
 				free(env_path_cpy);
