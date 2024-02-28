@@ -40,9 +40,8 @@ char **split_it(char *str)
 	tokens = malloc(sizeof(char *) * (num_tokens + 1));
 	if (tokens == NULL)
 	{
-		perror("couldn't allocate memory for tokens");
 		free(tokens);
-		exit(-1);
+		exit(EXIT_FAILURE);
 	}
 	token = NULL;
 	token = strtok(str_copy2, " ");

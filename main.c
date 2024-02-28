@@ -3,12 +3,12 @@
  * main - check the code
  * @argc: number of arguments
  * @argv: pointer to array of strings
- * @env: pointer to array of strings
  * Return: Always 0.
  */
 int main(int argc, char *argv[], char *env[])
 {
-	char *buff = NULL, *cmd_path, **tokens;
+	char *prompt = "karim&khalil$ ", *buff = NULL, *cmd_path;
+	char **tokens;
 	size_t buff_size = 0, i = 0;
 	ssize_t ret_getline;
 	(void)argc, (void)argv, (void)env;
