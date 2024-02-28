@@ -5,39 +5,41 @@
  * @argv: pointer to array of strings
  * Return: Always 0.
  */
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
-	char *prompt = "karim&khalil$ ", *buff = NULL, *cmd_path;
-	char **tokens;
-	size_t buff_size = 0;
-	ssize_t ret_getline;
+	int i = 0;
+	char *input = NULL, **new_argv = NULL;
+	ssize_t len = 0;
+	ssize_t nums = 0;
+	(void)argc;
 
-	(void)argc, (void)argv;
 	while (1)
 	{
-		if (isatty(STDIN_FILENO))
-			print_k(prompt);
-		ret_getline = getline(&buff, &buff_size, stdin);
-		if (ret_getline == -1 || strcmp(buff, "exit\n") == 0)
+		nums = getline(&input, &len, stdin);
+		if (nums == EOF)
 		{
-			free(buff);
-			exit(ret_getline == -1 ? EXIT_FAILURE : EXIT_SUCCESS);
+			free(input);
+			return (0);
 		}
-		buff[ret_getline - 1] = '\0';
-		tokens = split_it(buff);
-		if (tokens)
+		new_argv = tokenizing(argv, input, nums);
+		if (new_argv == NULL)
 		{
-			int i;
-			cmd_path = get_path(tokens[0]);
-			execute_cmd(cmd_path ? cmd_path : tokens[0], tokens);
-			for (i = 0; tokens[i] != NULL; i++)
-			{
-				free(tokens[i]);
-			}
-			free(tokens), free(cmd_path);
+			free(input);
+			return (0);
 		}
-		free(buff);
-		buff = NULL, buff_size = 0;
+		if (forking(new_argv) < 0)
+		{
+			free(input);
+			free(new_argv);
+			return (0);
+		}
+		for (i = 0; new_argv[i] != NULL; i++)
+		{
+			free(new_argv[i]);
+		}
+		free(new_argv);
+		argv = new_argv;
 	}
+	free(input), free(argv);
 	return (0);
 }
