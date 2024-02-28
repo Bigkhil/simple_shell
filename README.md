@@ -1,1 +1,1 @@
-new README for simple shell Project
+new README for simple Shell Project
