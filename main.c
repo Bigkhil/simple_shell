@@ -9,7 +9,7 @@ int main(int argc, char **argv)
 {
 	int i = 0;
 	char *input = NULL, **new_argv = NULL;
-	ssize_t len = 0;
+	size_t len = 0;
 	ssize_t nums = 0;
 	(void)argc;
 
