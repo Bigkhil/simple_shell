@@ -17,8 +17,9 @@ void print_k(const char *format);
 void *execute_cmd(char **argv);
 int forking(char **new_argv);
 char *get_path(char *cmd);
-void exitt(char **argv, char *c);
+char **exitt(char **argv, char *c);
 char **tokenizing(char **argv, char *c, size_t n);
 void print_env(char *env[]);
 char *remove_space(char *str);
+unsigned int exit_now(void);
 #endif
