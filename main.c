@@ -40,6 +40,7 @@ int main(int argc, char **argv)
 		free(new_argv);
 		argv = new_argv;
 	}
+	exit_now();
 	free(input), free(argv);
 	return (0);
 }
