@@ -51,7 +51,7 @@ char *get_path(char *cmd)
  * Return: this function returns NULL
  */
 
-char **exitt(char **argv, char *c)
+void exitt(char **argv, char *c)
 {
 	if (argv != NULL)
 	{
@@ -106,7 +106,7 @@ char **tokenizing(char **argv, char *z, size_t n)
 	argv[i] = NULL;
 	if (strcmp(argv[0], "exit") == 0)
 	{
-		return (exitt(argv, zi));
+		(exitt(argv, zi));
 	}
 	else if (strcmp(argv[0], "env") == 0)
 	{
